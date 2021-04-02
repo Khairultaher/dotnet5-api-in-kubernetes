@@ -1,0 +1,35 @@
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: nodejs-hw-pod
+#  labels:
+#    app: nodejs-hw-app
+#spec:
+#  containers:
+#  - name: nodejs-hw-cont
+#    image: khairul100/nodejs-hw-img
+#    ports:
+#    - containerPort: 3000
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dotnet5-hw-dep
+  labels:
+    app: nodejs-hw-pod
+spec:
+  selector:
+    matchLabels:
+      app: dotnet5-hw-app
+      version: v1
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dotnet5-hw-app
+        version: v1
+    spec:
+      containers:
+      - name: dotnet5-hw-con
+        image: dotnet5-hw-img
+        ports:
+        - containerPort: 80
